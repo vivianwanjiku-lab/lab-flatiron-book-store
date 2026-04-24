@@ -6,7 +6,6 @@ const bookStore = {
             title: 'Eloquent JavaScript: A Modern Introduction to Programming',
             author: 'Marjin Haverbeke',
             imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/51IKycqTPUL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg',
-            
         },
         {
             id:2,
@@ -25,7 +24,6 @@ const bookStore = {
             title: 'JavaScript: The Definitive Guide',
             author: 'David Flanagan',
             imageUrl: "https://images-na.ssl-images-amazon.com/images/I/51wijnc-Y8L._SX379_BO1,204,203,200_.jpg"
-            
         },
         {
             id:5,
@@ -38,10 +36,48 @@ const bookStore = {
             title: 'Cracking the Coding Interview',
             author: 'Gayle Laakmann McDowell',
             imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41oYsXjLvZL._SY344_BO1,204,203,200_.jpg'
-            
         }
     ]
 }
 
 // Write your code here!
 
+// DOM elements
+const header = document.getElementById("header");
+const bookList = document.getElementById("book-list");
+
+// Update header text
+if (header) {
+    header.textContent = bookStore.name;
+}
+
+// Clear the book list and remove any existing elements
+if (bookList) {
+    // Clear the list
+    bookList.innerHTML = "";
+    
+    // Create book elements
+    bookStore.books.forEach(book => {
+        // Create list item
+        const li = document.createElement("li");
+        
+        // Add title
+        const titleElement = document.createElement("h3");
+        titleElement.textContent = book.title;
+        li.appendChild(titleElement);
+        
+        // Add author
+        const authorElement = document.createElement("p");
+        authorElement.textContent = book.author;
+        li.appendChild(authorElement);
+        
+        // Add image
+        const imgElement = document.createElement("img");
+        imgElement.src = book.imageUrl;
+        imgElement.alt = `Cover of ${book.title}`;
+        li.appendChild(imgElement);
+        
+        // Add to book list
+        bookList.appendChild(li);
+    });
+}
